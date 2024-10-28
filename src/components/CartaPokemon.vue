@@ -1,5 +1,5 @@
 <template>
-  <div class="cartaPokemon bg-[#ffcb05] rounded-xl shadow-md w-[220px] h-[300px] p-2 m-2 flex flex-col justify-between items-center text-center transition-transform duration-300 hover:-translate-y-2">
+  <div class="cartaPokemon bg-[#ffcb05] rounded-xl shadow-lg w-[220px] h-[300px] p-2 m-2 flex flex-col justify-between items-center text-center transition-transform duration-300 hover:-translate-y-2">
     <!-- Mostrar imagen del Pokémon o un placeholder si no existe -->
     <img :src="imagen" :alt="nombre" @error="imgError" class="w-30 h-auto object-contain m-0" />
     <h2 class="text-red-600 m-0 text-2xl font-bold">{{ nombre }}</h2>

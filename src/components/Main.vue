@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="bg-[#2b72b8] text-white font-comic w-full flex flex-col items-center justify-center mx-auto text-center">
+    <div class="bg-gradient-to-b from-blue-800 to-blue-300  text-white font-comic w-full flex flex-col items-center justify-center mx-auto text-center">
         <slot>
             <GestorPokemon />
         </slot>

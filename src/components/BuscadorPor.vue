@@ -1,5 +1,5 @@
 <template>
-  <div class="buscador flex flex-col justify-center items-center text-white font-comic text-center  mx-[3%] mt-4 mb-4">
+  <div class="buscador flex flex-col justify-center items-center text-white font-comic text-center  mx-[3%] mt-2 mb-4">
     <label for="buscadorPokemon" class="text-2xl">Busca Pokémon por nombre, Id o tipo</label>
     <div class="grupo-busca flex flex-col md:flex-row  mt-4"> 
       <input
