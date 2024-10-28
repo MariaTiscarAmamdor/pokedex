@@ -1,9 +1,9 @@
 <template>
-  <div>    
+  <div>
     <GestorBuscar @addToFav="agregarAFavoritos" />
 
     <!-- Mostrar mensaje en pantalla cuando añadimos o eliminamos de favoritos -->
-    <div v-if="mensaje" class="mensaje">{{ mensaje }}</div>   
+    <div v-if="mensaje" class="text-[3rem] text-[#ffca28]">{{ mensaje }}</div>
 
     <!-- Componente para mostrar y gestionar favoritos -->
     <ListaFavPokemon
@@ -20,7 +20,7 @@ import GestorBuscar from "./GestorBuscar.vue";
 import ListaFavPokemon from "./ListaFavPokemon.vue";
 
 const favoritos = ref([]); // Array para almacenar favoritos
-const mensaje = ref(''); // Estado para almacenar el mensaje
+const mensaje = ref(""); // Estado para almacenar el mensaje
 
 const agregarAFavoritos = (pokemon) => {
   const existe = favoritos.value.find((fav) => fav.id === pokemon.id);
@@ -33,40 +33,38 @@ const agregarAFavoritos = (pokemon) => {
       tipo: pokemon.tipo,
       habilidades: pokemon.habilidades,
     });
-    mensaje.value = '¡Pokémon agregado a favoritos!'; 
+    mensaje.value = `¡ El pokémon ${pokemon.nombre} agregado a favoritos!`;
     setTimeout(() => {
-      mensaje.value = ''; 
-    }, 2000)
+      mensaje.value = "";
+    }, 3000);
   } else {
-    mensaje.value = 'El Pokémon ya está en favoritos.'; 
+    mensaje.value = `El pokémon ${pokemon.nombre}  ya está en favoritos.`;
     setTimeout(() => {
-      mensaje.value = ''; 
-    }, 2000);
+      mensaje.value = "";
+    }, 3000);
   }
 };
 
 // Función para eliminar un Pokémon de la lista de favoritos
 const eliminarDeFavoritos = (id) => {
-  favoritos.value = favoritos.value.filter((fav) => fav.id !== id);
-  mensaje.value = 'Pokémon eliminado de favoritos.'; 
+  const pokemonEliminado = favoritos.value.find((fav) => fav.id === id);
+  if (pokemonEliminado) {
+    // Eliminar el Pokémon de la lista de favoritos
+    favoritos.value = favoritos.value.filter((fav) => fav.id !== id);
+    // Mostrar mensaje de eliminación
+    mensaje.value = `El pokémon ${pokemonEliminado.nombre} eliminado de favoritos.`;
     setTimeout(() => {
-      mensaje.value = ''; 
-    }, 2000);
-  
+      mensaje.value = "";
+    }, 3000);
+  }
 };
 </script>
 
 <style scoped>
-.favoritos-container {
+/* .favoritos-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-}
-
-.mensaje{
-  font-size: 3.5rem;
-  color: #ffca28;
-}
+} */
 </style>
-

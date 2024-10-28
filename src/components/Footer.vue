@@ -1,29 +1,8 @@
 <template>
-  <footer class="footer">
-    <p>@ 2024 Busca tus Pokemons</p>
+  <footer class="flex flex-col md:flex-row items-center justify-center bg-[#FFFF00] p-5 rounded-b-lg border-t-4 border-red-500">
+    <p class="text-red-500 text-xl mx-5 md:text-m font-bold">@ 2024 Busca tus Pokémons</p>
   </footer>
 </template>
 <style scoped>
-.footer {
-  background-color: yellow;
-  color: red;
-  font-family: "Comic Sans MS", cursive, sans-serif;
-  width: 100%;
-  height: 10vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-top: 5px solid red;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  margin: 0 auto;
-  text-align: center;
-}
 
-@media (max-width: 768px) {
-  .footer {
-    width: 100%;
-    height: 8vh; /* Ajuste para pantallas pequeñas */
-  }
-}
 </style>

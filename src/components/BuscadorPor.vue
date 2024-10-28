@@ -1,9 +1,7 @@
 <template>
-  <div class="buscador">
-    <label for="buscadorPokemon">Busca Pokemon por nombre, Id o tipo</label>
-    <!-- keyup.enter permite que el usuario pueda realizar la búsqueda tanto haciendo 
-         clic en el botón como presionando la tecla Enter. -->
-    <div class="grupo-busca">
+  <div class="buscador flex flex-col justify-center items-center text-white font-comic text-center  mx-[3%] mt-4 mb-4">
+    <label for="buscadorPokemon" class="text-2xl">Busca Pokémon por nombre, Id o tipo</label>
+    <div class="grupo-busca flex flex-col md:flex-row  mt-4"> 
       <input
         v-model="buscaConsulta"
         @keyup.enter="emitirBusqueda"
@@ -11,16 +9,14 @@
         type="text"
         id="buscadorPokemon"
         placeholder="Ejemplo: Pikachu, 1, fire..."
-      />
-      <button @click="emitirBusqueda" class="btn-buscar">
-        <img src="@/assets/buscar.png" alt="Buscar" />
+        class=" p-2 md:p-4 bg-[#f6f6aa] border border-gray-300 rounded-md text-base" />
+      <button
+        @click="emitirBusqueda"
+        class="btn-buscar mt-2 md:mt-0 md:ml-[3%] px-2 md:px-4 py-2 rounded-md bg-[#f9a825] hover:bg-[#ffca28] transition duration-300" >
+        <img src="@/assets/buscar.png" alt="Buscar" class="w-4 h-auto md:w-5" /> 
       </button>
     </div>
-
-    <!-- Mostrar un mensaje de error si no hay texto en el input -->
-    <p v-if="error" class="error">
-      Por favor, introduce un valor en la búsqueda.
-    </p>
+    <p v-if="error" class="text-red-500 text-base mt-2">Por favor, introduce un valor en la búsqueda.</p>
   </div>
 </template>
 
@@ -55,63 +51,5 @@ const clearError = () => {
 </script>
 
 <style scoped>
-.buscador {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-  font-family: "Comic Sans MS", cursive, sans-serif;
-  text-align: center;
-  width: 100%;
-  margin: 3%;
-}
 
-label {
-  font-size: 2rem;
-}
-.grupo-busca {
-  display: flex;
-  flex-direction: row;
-}
-
-input {
-  width: 100%;
-  margin: auto;
-  padding: 1rem;
-  background-color: #f6f6aa;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-}
-.btn-buscar {
-  padding: 10px 20px;
-  margin-left: 3%;
-  font-size: 16px;
-  border-radius: 5px;
-  background-color: #f9a825;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.btn-buscar:hover {
-  background-color: #ffca28;
-}
-/* Ajustes responsivos */
-@media (max-width: 768px) {
-  input {
-    width: 90%;
-  }
-
-  button {
-    width: 50px;
-  }
-}
-
-.error {
-  color: red;
-  font-size: 1rem;
-}
 </style>

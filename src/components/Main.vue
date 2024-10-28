@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="contenido">
+    <div class="bg-[#2b72b8] text-white font-comic w-full flex flex-col items-center justify-center mx-auto text-center">
         <slot>
             <GestorPokemon />
         </slot>
@@ -13,16 +13,4 @@ import GestorPokemon from "./GestorPokemon.vue";
 </script>
 
 <style scoped>
-.contenido {
-  background-color: #2b72b8;
-  color: white;
-  font-family: "Comic Sans MS", cursive, sans-serif; /* Fuente divertida */
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  text-align: center;
-}
 </style>

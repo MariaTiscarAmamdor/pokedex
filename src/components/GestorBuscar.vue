@@ -1,11 +1,11 @@
 <template>
   <slot>
     <BuscadorPor @buscar="buscarPokemon" />
-    <div v-if="error" class="error">
+    <div v-if="error" class="text-red-600 text-center my-4">
       <p>No se encontró ningún Pokémon con esa búsqueda.</p>
     </div>
 
-    <div v-else-if="pokemonSeleccionado" class="carta-buscada-container">
+    <div v-else-if="pokemonSeleccionado" class="carta-buscada-container flex flex-wrap justify-center gap-5">
       <CartaPokemon
         :nombre="pokemonSeleccionado.nombre"
         :id="pokemonSeleccionado.id"
@@ -17,7 +17,7 @@
           <button
             :pokemon="pokemon"
             @click="agregarAFavoritos(pokemonSeleccionado)"
-            class="btn-fav">
+            class="btn-fav mt-2 bg-red-500 text-white border-none py-1 px-3 rounded-md cursor-pointer hover:bg-red-600 transition-colors">
             Agrega a Favoritos
           </button>
         </template>
@@ -25,10 +25,12 @@
     </div>
 
     <div v-else-if="pokemonsPorTipo.length > 0">
-      <h2>Pokémon de tipo {{ tipoBuscado }}</h2>
-      <ul class="pokemon-list">
-        <li v-for="p in pokemonsPorTipo" :key="p.name">
-          <button @click="seleccionarPokemon(p.name)">{{ p.name }}</button>
+      <h2 class="text-2xl font-bold text-center mb-4">Los Pokémons de tipo {{ tipoBuscado }} encontrados son:</h2>
+      <ul class="pokemon-list list-none mx-auto  max-w-xl">
+        <li v-for="p in pokemonsPorTipo" :key="p.name" class="bg-yellow-400 my-2 py-2 px-3 rounded-lg shadow-md transition-transform duration-300 hover:-translate-y-1 hover:bg-orange-600">
+          <button @click="seleccionarPokemon(p.name)" class="text-base font-semibold text-gray-900 bg-transparent text-left">
+            {{ p.name }}
+          </button>
         </li>
       </ul>
     </div>
@@ -73,6 +75,7 @@ const buscarPokemon = async (consulta) => {
 
     if (response.pokemon) {
       pokemonsPorTipo.value = response.pokemon.map((p) => p.pokemon);
+      tipoBuscado.value = consulta; //para actualizar el valor de tipoBUscado
       console.log("Tipo buscado", tipoBuscado, "consulta", consulta);
     } else {
       procesarDatosPokemon(response);
@@ -123,51 +126,4 @@ const agregarAFavoritos = (pokemonData) => {
 
 <style scoped>
 
-.carta-buscada-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-
-.btn-fav {
-  margin-top: 10px;
-  background-color: #f44336;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-   
-  }
-  
-  .btn-fav:hover {
-    background-color: #e53935;
-  }
-
-ul {
-  list-style: none; 
-}
-
-ul li {
-  background-color: #ffca28; 
-  margin: 10px 0; 
-  padding: 10px 15px; 
-  border-radius: 10px; 
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-  transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-ul li:hover {
-  transform: translateY(-5px); 
-  background-color: #f57c00; 
-}
-ul li button {
-  margin: 0;
-  font-size: 16px; 
-  color: #333; 
-  background-color: #f57c00; 
-  font-weight: 600; 
-  border: none;
-}
 </style>

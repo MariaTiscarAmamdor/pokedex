@@ -1,5 +1,5 @@
 <template>
-  <div class="layout">
+  <div class="w-[90%] mx-auto border-4 border-red-500 rounded-xl">
     <slot name="header">
       <Header />
     </slot>
@@ -19,10 +19,5 @@ import Main from "./Main.vue";
 </script>
 
 <style scoped>
-.layout {
-  width: 90%;
-  margin: 0 auto;
-  border: 5px solid red;
-  border-radius: 23px;
-}
+
 </style>

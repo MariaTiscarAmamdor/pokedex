@@ -1,23 +1,25 @@
 <template>
   <!-- Mostrar las tarjetas de Pokémon favoritos -->
   <div v-if="favoritos.length > 0">
-      <h2>Mis Pokémon Favoritos:</h2>
-      <div class="favoritos-container">
-        <CartaPokemon
-          v-for="(fav, index) in favoritos"
-          :key="fav.id"
-          :nombre="fav.nombre"        
-          :id="fav.id"               
-          :imagen="fav.imagen"        
-          :tipo="fav.tipo"             
-          :habilidades="fav.habilidades">
+    <h2 class="text-xl font-bold mb-2">Mis Pokémon Favoritos:</h2>
+    <div class="flex flex-wrap justify-center gap-5">
+      <CartaPokemon
+        v-for="(fav, index) in favoritos"
+        :key="fav.id"
+        :nombre="fav.nombre"        
+        :id="fav.id"               
+        :imagen="fav.imagen"        
+        :tipo="fav.tipo"             
+        :habilidades="fav.habilidades">
 
-          <template #actions>
-            <button @click="eliminar(fav.id)">Eliminar de Favoritos</button>
-          </template>
-        </CartaPokemon>
-      </div>
+        <template #actions>
+          <button @click="eliminar(fav.id)" class="mt-2 bg-red-500 text-white rounded-md px-4 py-2 hover:bg-red-600 transition duration-300">
+            Eliminar de Favoritos
+          </button>
+        </template>
+      </CartaPokemon>
     </div>
+  </div>
 </template>
 
 <script setup>
@@ -41,32 +43,5 @@ const eliminar = (id) => {
 </script>
 
 <style scoped>
-h2 {
-  margin: 0.5rem 0;
-}
-.lista-favoritos {
-  margin-top: 20px;
-}
 
-.pokemon-item {
-  margin: 10px 0;
-}
-.favoritos-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-button {
-  margin-top: 10px;
-  background-color: #f44336;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-button:hover {
-  background-color: #e53935;
-}
 </style>
