@@ -3,7 +3,7 @@
     <GestorBuscar @addToFav="agregarAFavoritos" />
 
     <!-- Mostrar mensaje en pantalla cuando añadimos o eliminamos de favoritos -->
-    <div v-if="mensaje" class="text-[3rem] text-[#ffca28]">{{ mensaje }}</div>
+    <div v-if="mensaje" class="text-[3rem] text-amarillo2">{{ mensaje }}</div>
 
     <!-- Componente para mostrar y gestionar favoritos -->
     <ListaFavPokemon
@@ -22,6 +22,11 @@ import ListaFavPokemon from "./ListaFavPokemon.vue";
 const favoritos = ref([]); // Array para almacenar favoritos
 const mensaje = ref(""); // Estado para almacenar el mensaje
 
+const capitalizarNombre = (nombre) => {
+  if (!nombre) return '';
+  return nombre.charAt(0).toUpperCase() + nombre.slice(1);
+};
+
 const agregarAFavoritos = (pokemon) => {
   const existe = favoritos.value.find((fav) => fav.id === pokemon.id);
   if (!existe) {
@@ -33,12 +38,12 @@ const agregarAFavoritos = (pokemon) => {
       tipo: pokemon.tipo,
       habilidades: pokemon.habilidades,
     });
-    mensaje.value = `¡ El pokémon ${pokemon.nombre} agregado a favoritos!`;
+    mensaje.value = `¡ El pokémon ${capitalizarNombre(pokemon.nombre)} agregado a favoritos!`;
     setTimeout(() => {
       mensaje.value = "";
     }, 3000);
   } else {
-    mensaje.value = `El pokémon ${pokemon.nombre}  ya está en favoritos.`;
+    mensaje.value = `El pokémon ${capitalizarNombre(pokemon.nombre)}  ya está en favoritos.`;
     setTimeout(() => {
       mensaje.value = "";
     }, 3000);
@@ -52,7 +57,7 @@ const eliminarDeFavoritos = (id) => {
     // Eliminar el Pokémon de la lista de favoritos
     favoritos.value = favoritos.value.filter((fav) => fav.id !== id);
     // Mostrar mensaje de eliminación
-    mensaje.value = `El pokémon ${pokemonEliminado.nombre} eliminado de favoritos.`;
+    mensaje.value = `El pokémon ${capitalizarNombre(pokemonEliminado.nombre)} eliminado de favoritos.`;
     setTimeout(() => {
       mensaje.value = "";
     }, 3000);
